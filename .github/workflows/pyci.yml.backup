@@ -24,4 +24,12 @@ jobs:
       - name: Run test coverage
         run: |
           make test-coverage
-
+      - name: SonarQubeScan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=DenisShutov_python-package
+            -Dsonar.organization=denisshutov
+            -Dsonar.python.coverage.reportPaths=coverage.xml
